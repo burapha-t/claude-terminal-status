@@ -71,9 +71,9 @@ const ASCII_ONLY   = false;  // true -> plain ASCII glyphs everywhere
 // the width math in the previous version.
 const G = ASCII_ONLY
   ? { full: '#', empty: '-', sep: '|', branch: 'git', up: '^', down: 'v',
-      reset: '@', warn: '!', fast: '>>', dir: '>' }
+      reset: '@', warn: '!', fast: '>>', dir: '>', dot: '/' }
   : { full: '█', empty: '░', sep: '│', branch: '⎇', up: '↑', down: '↓',
-      reset: '↻', warn: '!', fast: '>>', dir: '▸' };
+      reset: '↻', warn: '!', fast: '>>', dir: '▸', dot: '·' };
 
 /* ════ presentation helpers ════════════════════════════════════════════ */
 const A = {
@@ -245,7 +245,7 @@ function buildIdentity(d, lv) {
   if (SHOW.effort && d.effort?.level) mode.push(paint(A.magenta, d.effort.level));
   if (SHOW.thinking && d.thinking?.enabled) mode.push(paint(A.gray, 'think'));
   if (SHOW.fastMode && d.fast_mode) mode.push(paint(A.yellow, G.fast));
-  push(mode.join(paint(A.dim, '·')), 1);
+  push(mode.join(paint(A.dim, G.dot)), 1);
 
   if (SHOW.vim && d.vim?.mode) {
     push(paint(d.vim.mode === 'INSERT' ? A.green : A.blue, d.vim.mode), 1);
@@ -348,13 +348,13 @@ function buildBudgets(d, lv) {
 // One knob changes per step so the layout degrades smoothly instead of
 // collapsing 25 columns at a time and leaving the terminal half empty.
 const LEVELS = [
-  { sep: '  │  ', ctxBar: 10, limBar: 6, tokens: true,  resets: true,  costTime: true,  terse: false },
-  { sep: '  │  ', ctxBar: 8,  limBar: 5, tokens: true,  resets: true,  costTime: true,  terse: false },
-  { sep: ' │ ',   ctxBar: 8,  limBar: 5, tokens: true,  resets: true,  costTime: true,  terse: false },
-  { sep: ' │ ',   ctxBar: 6,  limBar: 4, tokens: true,  resets: true,  costTime: true,  terse: false },
-  { sep: ' │ ',   ctxBar: 6,  limBar: 4, tokens: true,  resets: true,  costTime: true,  terse: true  },
-  { sep: ' │ ',   ctxBar: 5,  limBar: 3, tokens: true,  resets: true,  costTime: true,  terse: true  },
-  { sep: ' │ ',   ctxBar: 5,  limBar: 3, tokens: false, resets: true,  costTime: true,  terse: true  },
+  { sep: `  ${G.sep}  `, ctxBar: 10, limBar: 6, tokens: true,  resets: true,  costTime: true,  terse: false },
+  { sep: `  ${G.sep}  `, ctxBar: 8,  limBar: 5, tokens: true,  resets: true,  costTime: true,  terse: false },
+  { sep: ` ${G.sep} `,   ctxBar: 8,  limBar: 5, tokens: true,  resets: true,  costTime: true,  terse: false },
+  { sep: ` ${G.sep} `,   ctxBar: 6,  limBar: 4, tokens: true,  resets: true,  costTime: true,  terse: false },
+  { sep: ` ${G.sep} `,   ctxBar: 6,  limBar: 4, tokens: true,  resets: true,  costTime: true,  terse: true  },
+  { sep: ` ${G.sep} `,   ctxBar: 5,  limBar: 3, tokens: true,  resets: true,  costTime: true,  terse: true  },
+  { sep: ` ${G.sep} `,   ctxBar: 5,  limBar: 3, tokens: false, resets: true,  costTime: true,  terse: true  },
   { sep: '  ',    ctxBar: 5,  limBar: 3, tokens: false, resets: true,  costTime: true,  terse: true  },
   { sep: ' ',     ctxBar: 4,  limBar: 3, tokens: false, resets: true,  costTime: true,  terse: true  },
   { sep: ' ',     ctxBar: 4,  limBar: 3, tokens: false, resets: true,  costTime: false, terse: true  },

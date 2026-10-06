@@ -147,7 +147,7 @@ Off by default: `thinking` (extended-thinking flag), `sessionName` (the `/rename
 | --- | --- | --- |
 | `MAX_ROWS` | `2` | `1` = never wrap; drop the least important segments instead. |
 | `WARN_AT` / `DANGER_AT` | `70` / `90` | Context % where the bar turns yellow / red. |
-| `ASCII_ONLY` | `false` | `true` replaces the bars and icons with plain ASCII (`#`, `-`, `^`, `v`) for fonts that lack them. |
+| `ASCII_ONLY` | `false` | `true` prints plain ASCII only (bars `#`/`-`, separators `\|`, arrows `^`/`v`), for fonts or terminals without Unicode glyphs. |
 | `WIDTH_MARGIN` | `2` | Columns held back from the terminal width so a row can never wrap. |
 | `GIT_CACHE_MS` | `3000` | Minimum time between `git status` calls. |
 | `FALLBACK_COLS` | `80` | Width to assume if Claude Code doesn't report one. |
